@@ -11,3 +11,253 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+/* Reset and base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #121212;
+  color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* App container */
+.App {
+  max-width: 1000px;
+  margin: auto;
+  width: 100%;
+  padding: 1rem;
+}
+
+/* Header & Footer */
+.Header, .Footer {
+  width: 100%;
+  background-color: #1db954;
+  padding: 1rem;
+  text-align: center;
+  font-weight: bold;
+  color: #fff;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.Footer {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+}
+
+/* Search bar */
+.searchBar {
+  margin: 2rem;
+}
+
+.searchBar label{
+  position: absolute;
+  left: -9999px;
+}
+
+.searchBar input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  background-color: #282828;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.searchBar input::placeholder {
+  color: #888;
+}
+
+.searchBar input:focus {
+  background-color: #333;
+  outline: 2px solid #1db954;
+}
+
+/* Podcast list */
+.podcastList {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.podcastCard {
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.podcastCard:hover {
+  background-color: #282828;
+  transform: translateY(-2px);
+}
+
+.podcastCard img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.podcastCard h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.podcastCard p {
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .podcastCard {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .podcastCard img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+
+/* Spotify dark background and fonts */
+.podcastPage {
+  background-color: #121212;
+  color: #ffffff;
+  padding: 2rem;
+  min-height: 100vh;
+  font-family: 'Circular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.podcastHeader {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+  margin-bottom: 3rem;
+}
+
+.podcastHeader img {
+  width: 250px;
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+.podcastInfo {
+  flex: 1;
+}
+
+.podcastInfo .label {
+  text-transform: uppercase;
+  color: #1db954;
+  font-weight: bold;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+}
+
+.podcastInfo h1 {
+  font-size: 2.5rem;
+  margin: 0.5rem 0;
+}
+
+.podcastInfo p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #b3b3b3;
+  max-width: 700px;
+}
+
+/* Episodes section */
+.episodes {
+  border-top: 1px solid #282828;
+  padding-top: 2rem;
+}
+
+.episodes h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.episodeCard {
+  padding: 1rem 0;
+  border-bottom: 1px solid #282828;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.episodeCard:hover {
+  background-color: #2a2a2a; /* Slightly lighter shade for hover effect */
+}
+
+
+.episodeDetails h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  color: #ffffff;
+}
+
+.episodeDetails p {
+  font-size: 0.9rem;
+  color: #a7a7a7;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  max-width: 700px;
+}
+
+audio {
+  width: 100%;
+  max-width: 500px;
+}
+
+/* Loading message */
+.loading {
+  color: #b3b3b3;
+  font-size: 1.1rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .podcastHeader {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .podcastHeader img {
+    width: 80%;
+    max-width: 300px;
+  }
+
+  .podcastInfo h1 {
+    font-size: 2rem;
+  }
+
+  .podcastInfo p {
+    max-width: 100%;
+  }
+
+  .episodeDetails p {
+    max-width: 100%;
+  }
+}
