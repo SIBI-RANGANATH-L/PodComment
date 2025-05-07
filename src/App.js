@@ -4,6 +4,7 @@ import Footer from './Footer';
 import Header from './Header';
 import Podcast from './Podcast';
 import { useEffect, useState } from 'react';
+import EpisodeDeatils from './EpisodeDeatils';
 
 
 function App() {
@@ -39,10 +40,13 @@ function App() {
         title={title}
       />
       <Routes>
-        <Route path='/' element={<Content token={token}/>}/>
-        <Route path='/podcast/:id' element={<Podcast token={token}/>}/>
-
+        <Route path="/" element={<Content token={token} />} />
+        <Route path="/podcast">
+          <Route path=":id" element={<Podcast token={token} />} />
+          <Route path=":podcastId/episode/:episodeId" element={<EpisodeDeatils token={token} />} />
+        </Route>
       </Routes>
+
       
       <Footer />
     </div>

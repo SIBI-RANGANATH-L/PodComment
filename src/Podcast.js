@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const Podcast = ({ token }) => {
   const { id } = useParams();
@@ -45,25 +45,48 @@ const Podcast = ({ token }) => {
             </div>
           </div>
 
-          <div className="episodes">
-            <h2>Episodes</h2>
-            {episodes.map((episode) => (
-              <div className="episodeCard" key={episode.id}>
-                <div className="episodeDetails">
-                <img
-                    src={episode.images?.[0]?.url}
-                    alt={episode.name}
-                    style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '8px' }}
-                />
-                  <h4>{episode.name}</h4>
-                  <p>{episode.description}</p>
-                  {episode.audio_preview_url && (
-                    <audio controls src={episode.audio_preview_url}></audio>
-                  )}
+          
+            <div className="episodes">
+              {episodes.length > 0 ? (
+                <>
+                  <h2>Episodes</h2>
+                  {episodes.map((episode) => (
+                    <Link to={`/podcast/${id}/episode/${episode.id}`} key={episode.id} style={{ textDecoration: 'none', color: 'inherit' }}>
+                      <div className="episodeCard">
+                        <div className="episodeDetails" style={{ display: 'flex', alignItems: 'flex-start', gap: '16px' }}>
+                          <img
+                            src={episode.images?.[0]?.url}
+                            alt={episode.name}
+                            style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '8px' }}
+                          />
+                          <div>
+                            <h4>{episode.name}</h4>
+                            <p>
+                              {episode.description.length >= 100 ? (
+                                <>
+                                  {episode.description.slice(0, 500)} <strong>Read More</strong>
+                                </>
+                              ) : (
+                                episode.description
+                              )}
+                            </p>
+                            {episode.audio_preview_url && (
+                              <audio controls src={episode.audio_preview_url}></audio>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
+
+                </>
+              ) : (
+                <div>
+                  <p className="loadingDiv">Loading episodes...</p>
                 </div>
-              </div>
-            ))}
-          </div>
+              )}
+            </div>
+          
         </>
       ) : (
         <p className="loading">Loading podcast...</p>
